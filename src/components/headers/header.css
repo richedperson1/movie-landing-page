@@ -7,15 +7,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 h1.page-title{
     color: #fff;
     font-family: "Montserrat";
-    font-size: 4.3rem;
+    font-size: 3.3rem;
 }
 
 .movies-logo{
     font-size: 3.3rem;
+}
+
+@media screen and (700px <= width <= 1220px) {
+    h1.page-title{
+        font-size: 2.3rem;
+    }
+}
+
+@media screen and (700px >= width ) {
+    h1.page-title{
+        font-size: 1.3rem;
+    }
 }

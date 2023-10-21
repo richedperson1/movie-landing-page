@@ -25,7 +25,7 @@ const MoviewCards = () => {
     console.log(jsonData)
     return (
         <>
-            <h1>Trending page</h1>
+            <h1 style={{ padding: "20px 0px", textAlign: "center" }}>Trending page</h1>
             <main className="movie-cards">
                 {jsonData && jsonData.results &&
                     jsonData.results.map((val) => {

@@ -1,13 +1,12 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Header from "./components/headers/headerName";
-import MoviewCards from "./components/mainPage/movies";
+import Trendingshows from "./components/mainPage/trendingloading";
 function App() {
   return (
     <>
       <section>
         <Header />
-        <MoviewCards />
+        <Trendingshows />
       </section>
     </>
   );
