@@ -1,10 +1,14 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Header from "./components/headers/headerName";
+import MoviewCards from "./components/mainPage/movies";
 function App() {
   return (
     <>
-      <Header />
+      <section>
+        <Header />
+        <MoviewCards />
+      </section>
     </>
   );
 }
