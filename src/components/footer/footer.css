@@ -1,0 +1,25 @@
+
+.footer-section{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-element{
+    display: block;
+    font-size: 1.3rem;
+    margin-top: 30px;
+    cursor: pointer;
+    background-color: #fefefe;
+    border-radius: 9px;
+    color: #000;
+    padding: 7px 0px;
+    padding-inline:  15px; ;
+    font-weight: 900;
+    transition: 1s all;
+}
+
+#active{
+    background-color: #151a1a;
+    color: #fefefe;
+}

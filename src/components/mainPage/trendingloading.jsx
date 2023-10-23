@@ -2,23 +2,20 @@ import React, { useEffect, useState } from "react";
 
 import "./movies.css"
 
-const MoviewCard = ({ movie_json }) => {
-    if (movie_json.media_type !== "movie") {
-        console.log(movie_json)
-    }
+const MoviewCard = ({ movie_json, ind }) => {
+
     return (
         <>
-
-            <div className="single-movie-card" key={movie_json.original_title + "-movies"}>
+            <div className={`single-movie-card movies${ind}`} key={`main-movies-cards${ind}`} >
                 <div className="image">
                     <img src={`https://image.tmdb.org/t/p/w300/${movie_json.backdrop_path}`} alt="" />
                 </div>
-                <span style={{ textAlign: "center", padding: "10px 0px" }} className="movie-name">
+                <span style={{ textAlign: "center", padding: "10px 0px" }} className="movie-name" key={`span-id1${ind}`}>
                     {movie_json.media_type === 'movie' ? movie_json.original_title : movie_json.name}
                 </span>
-                < span className="name-date" style={{ display: "flex", justifyContent: "space-between", width: "90%" }}>
-                    <span className="show-type">{movie_json.media_type === 'movie' ? "Movie show" : "TV show"}</span>
-                    <span className="content-publish-date">
+                < span className="name-date" style={{ display: "flex", justifyContent: "space-between", width: "90%" }} key={`span-id2${ind}`}>
+                    <span key={`span-id21${ind}`} className="show-type">{movie_json.media_type === 'movie' ? "Movie show" : "TV show"}</span>
+                    <span key={`span-id22${ind}`} className="content-publish-date">
                         {movie_json.media_type === 'movie' ? movie_json.release_date : movie_json.first_air_date}
                     </span>
                 </ span>
@@ -51,8 +48,8 @@ const Trendingshows = () => {
             <h1 style={{ padding: "20px 0px", textAlign: "center" }}>Trending page</h1>
             <main className="movie-cards">
                 {moviesList && moviesList.results &&
-                    moviesList.results.map((val) => {
-                        return (<MoviewCard movie_json={val} />)
+                    moviesList.results.map((val, id) => {
+                        return (<MoviewCard movie_json={val} ind={id} />)
                     })}
             </main>
         </>

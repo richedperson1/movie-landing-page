@@ -1,7 +1,7 @@
 import React from "react";
 import jsonData from "../../data/movieData"
 import "./movies.css"
-const MoviewCard = ({ movie_json }) => {
+export const MoviewCard = ({ movie_json }) => {
     return (
         <>
 
@@ -22,7 +22,6 @@ const MoviewCard = ({ movie_json }) => {
 }
 
 const MoviewCards = () => {
-    console.log(jsonData)
     return (
         <>
             <h1 style={{ padding: "20px 0px", textAlign: "center" }}>Trending page</h1>
