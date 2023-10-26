@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import ShimmerBox from "../decorator/shimmers";
 import "./movies.css"
 
 const MoviewCard = ({ movie_json, ind }) => {
@@ -42,6 +42,22 @@ const Trendingshows = () => {
         })
 
     }, [trendingDataGot])
+
+    const ShimmerUIRendering = () => {
+        console.log("this is array", [...Array(20)])
+        return [...Array(20)].map((e, i) => {
+            return (<ShimmerBox width={300} height={307} bgColor={'#766f6f'} />)
+        })
+
+    }
+    if (trendingDataGot === 0) {
+        return (<>
+            <h1 style={{ padding: "20px 0px", textAlign: "center" }}>Trending page</h1>
+            <main className="movie-cards">
+                {ShimmerUIRendering()}
+            </main>
+        </>)
+    }
 
     return (
         <>
