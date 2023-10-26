@@ -2,13 +2,7 @@ import "./App.css";
 import Header from "./components/headers/headerName";
 import Trendingshows from "./components/mainPage/trendingloading";
 import FooterSection from "./components/footer/footerApp";
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 
 function MainApp() {
   const location = useLocation();
