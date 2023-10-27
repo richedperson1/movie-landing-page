@@ -1,27 +1,16 @@
 import React from "react";
 import jsonData from "../../data/movieData"
 import "./movies.css"
-export const MoviewCard = ({ movie_json }) => {
-    return (
-        <>
 
-            <div className="single-movie-card">
-                <div className="image">
-                    <img src={`https://image.tmdb.org/t/p/w300/${movie_json.backdrop_path}`} alt="" />
-                </div>
-                <span style={{ textAlign: "center", padding: "10px 0px" }} className="movie-name">{movie_json.original_title}</span>
-                < span className="name-date" style={{ display: "flex", justifyContent: "space-between", width: "90%" }}>
-                    <span className="show-type">{movie_json.media_type}</span>
-                    <span className="content-publish-date">
-                        {movie_json.release_date}
-                    </span>
-                </ span>
-            </div>
-        </>
-    )
-}
+import MoviewCard from "./showloadingPage"
+// Movies JSON Data
+
+// https://api.themoviedb.org/3/discover/movie?api_key=26ba5e77849587dbd7df199727859189&language=en-US&sort_by=popularity.desc
+
+
 
 const MoviewCards = () => {
+
     return (
         <>
             <h1 style={{ padding: "20px 0px", textAlign: "center" }}>Trending page</h1>

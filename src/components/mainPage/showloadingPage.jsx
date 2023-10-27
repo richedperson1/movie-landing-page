@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ShimmerBox from "../decorator/shimmers";
 import "./movies.css"
 
-const MoviewCard = ({ movie_json, ind }) => {
+export const ShowCard = ({ movie_json, ind }) => {
 
     return (
         <>
@@ -23,34 +23,32 @@ const MoviewCard = ({ movie_json, ind }) => {
         </>
     )
 }
-const Trendingshows = () => {
-    const [moviesList, setMoviesList] = useState([])
-
-    const [trendingDataGot, setTrendingDataGot] = useState(0)
+export const ShowLayOut = ({ url2Render }) => {
+    const [showList, setShowList] = useState([]);
+    const [showDataFound, setShowDataFound] = useState(0)
     const fetchingDataURL = async () => {
-        const reponseFromURL = await fetch("https://api.themoviedb.org/3/trending/all/day?api_key=26ba5e77849587dbd7df199727859189&page=2");
+        const reponseFromURL = await fetch(url2Render);
         const jsonMoviesData = await reponseFromURL.json()
-
         return jsonMoviesData
     }
 
     useEffect(() => {
         const ouputJsonData = fetchingDataURL();
+        // console.log("data is loading", ouputJsonData, url2Render)
         ouputJsonData.then((result) => {
-            setMoviesList(result)
-            setTrendingDataGot(1)
+            setShowList(result)
+            setShowDataFound(1)
         })
 
-    }, [trendingDataGot])
+    }, [showDataFound])
 
     const ShimmerUIRendering = () => {
-        console.log("this is array", [...Array(20)])
         return [...Array(20)].map((e, i) => {
             return (<ShimmerBox width={300} height={307} bgColor={'#766f6f'} />)
         })
 
     }
-    if (trendingDataGot === 0) {
+    if (showDataFound === 0) {
         return (<>
             <h1 style={{ padding: "20px 0px", textAlign: "center" }}>Trending page</h1>
             <main className="movie-cards">
@@ -63,13 +61,36 @@ const Trendingshows = () => {
         <>
             <h1 style={{ padding: "20px 0px", textAlign: "center" }}>Trending page</h1>
             <main className="movie-cards">
-                {moviesList && moviesList.results &&
-                    moviesList.results.map((val, id) => {
-                        return (<MoviewCard movie_json={val} ind={id} />)
+                {showList && showList.results &&
+                    showList.results.map((val, id) => {
+                        return (<ShowCard movie_json={val} ind={id} />)
                     })}
             </main>
         </>
     )
 }
+
+const Trendingshows = () => {
+    return (
+        <>
+            <ShowLayOut url2Render={"https://api.themoviedb.org/3/trending/all/day?api_key=26ba5e77849587dbd7df199727859189&page=2"} />
+        </>
+    )
+}
+export const Movieshows = () => {
+    return (
+        <>
+            <ShowLayOut url2Render={"https://api.themoviedb.org/3/discover/movie?api_key=26ba5e77849587dbd7df199727859189&language=en-US&sort_by=popularity.desc"} />
+        </>
+    )
+}
+export const WebSeries = () => {
+    return (
+        <>
+            <ShowLayOut url2Render={"https://api.themoviedb.org/3/discover/tv?api_key=26ba5e77849587dbd7df199727859189&language=en-US&sort_by=popularity.desc"} />
+        </>
+    )
+}
+
 
 export default Trendingshows;

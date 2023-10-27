@@ -10,7 +10,7 @@ const FooterSection = () => {
     const location = useLocation()
     return (
         <>
-            <footer className="footer-section" >
+            <footer className="footer-section" style={{ backgroundColor: '#2d313a' }}>
                 <Link to="/" className="footer-element" id={location.pathname === '/' ? 'active' : ''}>Trending</Link>
                 <Link to="/movies" className="footer-element" id={location.pathname === '/movies' ? 'active' : ''}>Movies</Link>
                 <Link to="/webSeries" className="footer-element" id={location.pathname === '/webSeries' ? 'active' : ''}>Web series</Link>
