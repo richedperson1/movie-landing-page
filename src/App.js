@@ -1,12 +1,11 @@
 import "./App.css";
 import Header from "./components/headers/headerName";
 import Trendingshows, {
-  Movieshows,
   WebSeries,
 } from "./components/mainPage/showloadingPage";
 import FooterSection from "./components/footer/footerApp";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-
+import { Movieshows } from "./components/mainPage/movies";
 function TrendingApp() {
   const location = useLocation();
   console.log("The location is : ", location);
