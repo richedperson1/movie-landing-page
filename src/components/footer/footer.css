@@ -1,7 +1,7 @@
 
 .footer-section{
     background: '#2d313a';
-    padding: 14px 0px;
+    padding: 5px 0px;
     margin-top: 10px;
     /* margin-bottom: 10px; */
     display: flex;
@@ -17,7 +17,7 @@
     font-size: 1.3rem;
     /* margin-top: 30px; */
     cursor: pointer;
-    background-color: #fefefe;
+    /* background-color: #fefefe; */
     border-radius: 9px;
     color: #000;
     padding: 7px 0px;
@@ -27,8 +27,21 @@
 }
 
 #active{
-    
     background: white;
     border-radius: 10px;
 }
 
+.footer-navigation{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-navigation img{
+    height: 35px;
+    width: auto;
+    transition:1s ease-in-out; 
+}

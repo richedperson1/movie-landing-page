@@ -9,6 +9,7 @@
 }
 
 .single-movie-card{
+    width: 300px;
     background-color: rgb(40, 44, 52);
     display: flex;
     justify-content: space-between;
