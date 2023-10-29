@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&family=Rubik+Puddles&display=swap');
+.container{
+    text-align: center;
+    padding: 10px 0px;
+    background-color: #39445a;
+    box-shadow: 0 1px 5px #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+h1.page-title{
+    color: #fff;
+    font-family: "Montserrat";
+    font-size: 3.3rem;
+}
+
+.movies-logo{
+    font-size: 3.3rem;
+}
+
+@media screen and (700px <= width <= 1220px) {
+    h1.page-title{
+        font-size: 2.3rem;
+    }
+}
+
+@media screen and (700px >= width ) {
+    h1.page-title{
+        font-size: 1.3rem;
+    }
+}

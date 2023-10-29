@@ -1,0 +1,38 @@
+:root{
+    --border-radius:10px
+}
+.movie-cards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.single-movie-card{
+    width: 300px;
+    background-color: rgb(40, 44, 52);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    border-radius: var(--border-radius);
+    padding-bottom: 10px;    
+    cursor: pointer;
+    border: 5px solid rgba(27, 29, 27, 0.267)
+}
+.single-movie-card > div.image > img{
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+}
+.single-movie-card:hover{
+    border: 5px solid #fff;
+    background-color: #fff;
+}
+span{
+    font-weight: 800;
+}
+.single-movie-card:hover span{
+    color: black;
+    font-weight: 800;
+}
