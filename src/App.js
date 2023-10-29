@@ -6,6 +6,7 @@ import Trendingshows, {
 import FooterSection from "./components/footer/footerApp";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Movieshows } from "./components/mainPage/movies";
+import PaginationControlled from "./components/decorator/pagenation";
 function TrendingApp() {
   return (
     <>

@@ -1,0 +1,7 @@
+.pagination-container{
+    color: aliceblue;
+}
+
+li > button{
+    color: aliceblue !important;
+}

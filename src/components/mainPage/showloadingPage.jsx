@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ShimmerBox from "../decorator/shimmers";
 import "./movies.css"
 
+
 export const ShowCard = ({ movie_json, ind }) => {
 
     return (
