@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ShimmerBox from "../decorator/shimmers";
 import "./movies.css"
-
+import PaginationControlled from "../decorator/pagenation"
 // Movies JSON Data
 
 // https://api.themoviedb.org/3/discover/movie?api_key=26ba5e77849587dbd7df199727859189&language=en-US&sort_by=popularity.desc
@@ -29,12 +29,14 @@ export const MoviesCard = ({ movie_json, ind }) => {
         </>
     )
 }
-export const ShowLayOut = ({ url2Render }) => {
+export const ShowLayOut = ({ url2Render, totalPageSet, pageNumber }) => {
     const [showList, setShowList] = useState([]);
     const [showDataFound, setShowDataFound] = useState(0)
     const fetchingDataURL = async () => {
+        console.log("The urls is : ", url2Render)
         const reponseFromURL = await fetch(url2Render);
         const jsonMoviesData = await reponseFromURL.json()
+        totalPageSet(Math.min(100, jsonMoviesData['total_pages']))
         return jsonMoviesData
     }
 
@@ -46,7 +48,7 @@ export const ShowLayOut = ({ url2Render }) => {
             setShowDataFound(1)
         })
 
-    }, [showDataFound])
+    }, [url2Render])
 
     const ShimmerUIRendering = () => {
         return [...Array(20)].map((e, i) => {
@@ -77,9 +79,14 @@ export const ShowLayOut = ({ url2Render }) => {
 }
 
 export const Movieshows = () => {
+    //  total, page, setPage
+    const [page, setPage] = useState(1)
+    const [totalPage, setTotalPage] = useState(1)
+    // console.log("the page number is ", page)
     return (
         <>
-            <ShowLayOut url2Render={"https://api.themoviedb.org/3/discover/movie?api_key=26ba5e77849587dbd7df199727859189&language=en-US&sort_by=popularity.desc"} />
+            <ShowLayOut url2Render={`https://api.themoviedb.org/3/discover/movie?api_key=26ba5e77849587dbd7df199727859189&language=en-US&sort_by=popularity.desc&page=${page}`} totalPageSet={setTotalPage} pageNumber={page} />
+            <PaginationControlled total={totalPage} page={page} setPage={setPage} />
         </>
     )
 }
