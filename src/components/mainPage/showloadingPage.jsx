@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ShimmerBox from "../decorator/shimmers";
 import "./movies.css"
 
-
+import PaginationControlled from "../decorator/pagenation"
 export const ShowCard = ({ movie_json, ind }) => {
 
     return (
@@ -24,12 +24,14 @@ export const ShowCard = ({ movie_json, ind }) => {
         </>
     )
 }
-export const ShowLayOut = ({ url2Render }) => {
+export const ShowLayOut = ({ url2Render, totalPageSet, pageNumber }) => {
     const [showList, setShowList] = useState([]);
     const [showDataFound, setShowDataFound] = useState(0)
     const fetchingDataURL = async () => {
+        console.log("The urls is : ", url2Render)
         const reponseFromURL = await fetch(url2Render);
         const jsonMoviesData = await reponseFromURL.json()
+        totalPageSet(Math.min(100, jsonMoviesData['total_pages']))
         return jsonMoviesData
     }
 
@@ -41,7 +43,7 @@ export const ShowLayOut = ({ url2Render }) => {
             setShowDataFound(1)
         })
 
-    }, [showDataFound])
+    }, [url2Render])
 
     const ShimmerUIRendering = () => {
         return [...Array(20)].map((e, i) => {
@@ -55,6 +57,7 @@ export const ShowLayOut = ({ url2Render }) => {
             <main className="movie-cards">
                 {ShimmerUIRendering()}
             </main>
+
         </>)
     }
 
@@ -67,28 +70,34 @@ export const ShowLayOut = ({ url2Render }) => {
                         return (<ShowCard movie_json={val} ind={id} />)
                     })}
             </main>
+
         </>
     )
 }
 
 const Trendingshows = () => {
+    const [page, setPage] = useState(1)
+    const [totalPage, setTotalPage] = useState(1)
+    // console.log("the page number is ", page)
     return (
         <>
-            <ShowLayOut url2Render={"https://api.themoviedb.org/3/trending/all/day?api_key=26ba5e77849587dbd7df199727859189&page=2"} />
+            <ShowLayOut url2Render={`https://api.themoviedb.org/3/trending/all/day?api_key=26ba5e77849587dbd7df199727859189&page=${page}`} totalPageSet={setTotalPage}
+                pageNumber={page} />
+            <PaginationControlled total={totalPage} page={page} setPage={setPage} />
         </>
     )
 }
-export const Movieshows = () => {
-    return (
-        <>
-            <ShowLayOut url2Render={"https://api.themoviedb.org/3/discover/movie?api_key=26ba5e77849587dbd7df199727859189&language=en-US&sort_by=popularity.desc"} />
-        </>
-    )
-}
+
 export const WebSeries = () => {
+    const [page, setPage] = useState(1)
+    const [totalPage, setTotalPage] = useState(1)
+    // setPage(2)
+    // total, page, setPage
+    // console.log("the page number is ", page)
     return (
         <>
-            <ShowLayOut url2Render={"https://api.themoviedb.org/3/discover/tv?api_key=26ba5e77849587dbd7df199727859189&language=en-US&sort_by=popularity.desc"} />
+            <ShowLayOut url2Render={`https://api.themoviedb.org/3/discover/tv?api_key=26ba5e77849587dbd7df199727859189&language=en-US&sort_by=popularity.desc&page=${page}`} totalPageSet={setTotalPage} pageNumber={page} />
+            <PaginationControlled total={totalPage} page={page} setPage={setPage} />
         </>
     )
 }

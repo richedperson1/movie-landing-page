@@ -3,8 +3,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 // import Pagination from '@mui/material/Pagination';
 import "./pagination.css"
-export default function PaginationControlled() {
-    const [page, setPage] = React.useState(1);
+export default function PaginationControlled({ total, page, setPage }) {
     const handleChange = (event, value) => {
         setPage(value);
     };
@@ -15,7 +14,7 @@ export default function PaginationControlled() {
                 display: "flex", justifyContent: "center", margin: "20px 0"
             }}>
                 <Stack spacing={2}>
-                    <Pagination count={10} page={page} onChange={handleChange} color="primary" />
+                    <Pagination count={total} page={page} onChange={handleChange} color="primary" />
                 </Stack>
             </div >
         </>
