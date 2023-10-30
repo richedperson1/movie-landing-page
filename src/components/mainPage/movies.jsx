@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ShimmerBox from "../decorator/shimmers";
 import "./movies.css"
 import PaginationControlled from "../decorator/pagenation"
+import Popover from '@mui/material/Popover';
 // Movies JSON Data
 
 // https://api.themoviedb.org/3/discover/movie?api_key=26ba5e77849587dbd7df199727859189&language=en-US&sort_by=popularity.desc
@@ -9,12 +10,38 @@ import PaginationControlled from "../decorator/pagenation"
 
 
 export const MoviesCard = ({ movie_json, ind }) => {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const [ytLinkKey, setYtLinkKey] = useState("")
+    const handleClick = (event) => {
+        console.log("this is ytlink", ytLinkKey)
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
+    const id = open ? 'simple-popover' : undefined;
+    const ytVideoLink = `https://api.themoviedb.org/3/movie/${movie_json.id}/videos?api_key=26ba5e77849587dbd7df199727859189&language=en-US`;
+
+    useEffect(() => {
+        const videoCapture = async () => {
+
+            const youtubeLinkReponse = await fetch(ytVideoLink)
+            const youtubeLink = await youtubeLinkReponse.json()
+            setYtLinkKey(youtubeLink.results[0].key)
+            return youtubeLink
+        }
+        videoCapture()
+    }, [ytLinkKey])
 
     return (
         <>
-            <div className={`single-movie-card movies${ind}`} key={`main-movies-cards${ind}`} >
+            <div aria-describedby={id} className={`single-movie-card movies${ind}`} key={`main-movies-cards${ind}`} onClick={handleClick} >
                 <div className="image">
-                    <img src={`https://image.tmdb.org/t/p/w300/${movie_json.backdrop_path}`} alt="" />
+                    <img src={`https://image.tmdb.org/t/p/w300/${movie_json.poster_path}`} alt="" />
                 </div>
                 <span style={{ textAlign: "center", padding: "10px 0px" }} className="movie-name" key={`span-id1${ind}`}>
                     {movie_json.title}
@@ -26,6 +53,39 @@ export const MoviesCard = ({ movie_json, ind }) => {
                     </span>
                 </ span>
             </div>
+            <Popover
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                }}
+                transformOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left"
+                }}
+            >
+                <div className="container-moview-detainls">
+                    <div className="image-container">
+
+                        <img src={`https://image.tmdb.org/t/p/w500/${movie_json.backdrop_path}`} alt="" />
+                    </div>
+                    <div className="description-data">
+                        <span style={{ textAlign: "center", color: "#fffe", fontSize: "1.5rem" }} className="movie-title">{movie_json.title}</span>
+                        <p className="description">
+                            {movie_json.overview}
+                        </p>
+                        <div className="youtube-link">
+                            {/* https://www.youtube.com/watch?v= */}
+                            {ytLinkKey && <a href={`https://www.youtube.com/watch?v=${ytLinkKey}`} tabIndex={0} target="_blank" rel="noopener noreferrer" className="yt-link"> Please Watch it</a>}
+                        </div>
+
+                    </div>
+                </div>
+
+            </Popover>
         </>
     )
 }
@@ -33,7 +93,6 @@ export const ShowLayOut = ({ url2Render, totalPageSet, pageNumber }) => {
     const [showList, setShowList] = useState([]);
     const [showDataFound, setShowDataFound] = useState(0)
     const fetchingDataURL = async () => {
-        console.log("The urls is : ", url2Render)
         const reponseFromURL = await fetch(url2Render);
         const jsonMoviesData = await reponseFromURL.json()
         totalPageSet(Math.min(100, jsonMoviesData['total_pages']))
@@ -85,7 +144,7 @@ export const Movieshows = () => {
     // console.log("the page number is ", page)
     return (
         <>
-            <ShowLayOut url2Render={`https://api.themoviedb.org/3/discover/movie?api_key=26ba5e77849587dbd7df199727859189&language=en-US&sort_by=popularity.desc&page=${page}`} totalPageSet={setTotalPage} pageNumber={page} />
+            <ShowLayOut url2Render={`https://api.themoviedb.org/3/discover/movie?api_key=26ba5e77849587dbd7df199727859189&language=en-US&sort_by=popularity.desc&include_video=false&page=${page}`} totalPageSet={setTotalPage} pageNumber={page} />
             <PaginationControlled total={totalPage} page={page} setPage={setPage} />
         </>
     )

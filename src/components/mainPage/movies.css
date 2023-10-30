@@ -6,11 +6,13 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    margin-inline: auto;
+    width: 80%;
+
 }
 
 .single-movie-card{
-    width: 300px;
-    height: 280px;
+    width: 220px;
     background-color: rgb(40, 44, 52);
     display: flex;
     justify-content: space-between;
@@ -37,3 +39,55 @@ span{
     color: black;
     font-weight: 800;
 }
+
+
+/* PopOver data */
+
+.container-moview-detainls{
+    display: flex;
+    /* flex-direction: column; */
+    align-items: stretch;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    width: 900px;
+    background-color: #3b3c3e;
+}
+
+.container-moview-detainls > div >img{
+    border-radius: 10px;
+}
+
+.description{
+    padding: 10px 5px;
+    border-radius: 10px;
+
+    background-color: rgb(146, 103, 48);
+    color: #fff;
+}
+
+.yt-link{
+    display: inline-block;
+    text-decoration: none;
+    padding: 5px;
+    background-color: #3b3c3e;
+    color: #fff;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    background-color: #e12a2a;
+}
+
+.description-data{
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 43%;
+    justify-content: space-around;
+}
+/*     display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 43%;
+    justify-content: space-around; */
