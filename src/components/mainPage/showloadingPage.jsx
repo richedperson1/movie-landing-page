@@ -1,15 +1,53 @@
 import React, { useEffect, useState } from "react";
 import ShimmerBox from "../decorator/shimmers";
 import "./movies.css"
-
+import BasicPopover from "../decorator/popover"
 import PaginationControlled from "../decorator/pagenation"
 export const ShowCard = ({ movie_json, ind }) => {
 
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const [ytLinkKey, setYtLinkKey] = useState("")
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+
+    useEffect(() => {
+        const videoCapture = async () => {
+
+            try {
+
+                const ytVideoLink = `https://api.themoviedb.org/3/tv/${movie_json.id}/videos?api_key=26ba5e77849587dbd7df199727859189&language=en-US`;
+                console.log(movie_json);
+                const youtubeLinkReponse = await fetch(ytVideoLink)
+                const youtubeLink = await youtubeLinkReponse.json()
+                setYtLinkKey(youtubeLink.results[0].key)
+            }
+            catch {
+                try {
+
+
+                    const ytVideoLink = `https://api.themoviedb.org/3/movie/${movie_json.id}/videos?api_key=26ba5e77849587dbd7df199727859189&language=en-US`;
+
+                    const youtubeLinkReponse = await fetch(ytVideoLink)
+                    const youtubeLink = await youtubeLinkReponse.json()
+                    setYtLinkKey(youtubeLink && youtubeLink.results && youtubeLink.results[0].key)
+                }
+                catch {
+                    setYtLinkKey("")
+                }
+            }
+            return "youtubeLink"
+        }
+        videoCapture()
+    }, [ytLinkKey])
+
     return (
         <>
-            <div className={`single-movie-card movies${ind}`} key={`main-movies-cards${ind}`} >
+            <div className={`single-movie-card movies${ind}`} key={`main-movies-cards${ind}`} onClick={handleClick}>
                 <div className="image">
-                    <img src={`https://image.tmdb.org/t/p/w300/${movie_json.backdrop_path}`} alt="" />
+                    <img src={`https://image.tmdb.org/t/p/w300/${movie_json.poster_path}`} alt="" />
                 </div>
                 <span style={{ textAlign: "center", padding: "10px 0px" }} className="movie-name" key={`span-id1${ind}`}>
                     {movie_json.media_type === 'movie' ? movie_json.original_title : movie_json.name}
@@ -21,6 +59,8 @@ export const ShowCard = ({ movie_json, ind }) => {
                     </span>
                 </ span>
             </div>
+            <BasicPopover anchorEl={anchorEl} setAnchorEl={setAnchorEl} movie_json={movie_json}
+                ytLinkKey={ytLinkKey} />
         </>
     )
 }

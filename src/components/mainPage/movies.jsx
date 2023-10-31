@@ -4,6 +4,7 @@ import "./movies.css"
 import PaginationControlled from "../decorator/pagenation"
 import Popover from '@mui/material/Popover';
 // Movies JSON Data
+import BasicPopover from "../decorator/popover"
 
 // https://api.themoviedb.org/3/discover/movie?api_key=26ba5e77849587dbd7df199727859189&language=en-US&sort_by=popularity.desc
 
@@ -14,13 +15,12 @@ export const MoviesCard = ({ movie_json, ind }) => {
 
     const [ytLinkKey, setYtLinkKey] = useState("")
     const handleClick = (event) => {
-        console.log("this is ytlink", ytLinkKey)
         setAnchorEl(event.currentTarget);
     };
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    // const handleClose = () => {
+    //     setAnchorEl(null);
+    // };
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
@@ -53,7 +53,10 @@ export const MoviesCard = ({ movie_json, ind }) => {
                     </span>
                 </ span>
             </div>
-            <Popover
+            {/* anchorEl,setAnchorEl */}
+            <BasicPopover anchorEl={anchorEl} setAnchorEl={setAnchorEl} movie_json={movie_json}
+                ytLinkKey={ytLinkKey} />
+            {/* <Popover
                 id={id}
                 open={open}
                 anchorEl={anchorEl}
@@ -78,14 +81,13 @@ export const MoviesCard = ({ movie_json, ind }) => {
                             {movie_json.overview}
                         </p>
                         <div className="youtube-link">
-                            {/* https://www.youtube.com/watch?v= */}
                             {ytLinkKey && <a href={`https://www.youtube.com/watch?v=${ytLinkKey}`} tabIndex={0} target="_blank" rel="noopener noreferrer" className="yt-link"> Please Watch it</a>}
                         </div>
 
                     </div>
                 </div>
 
-            </Popover>
+            </Popover> */}
         </>
     )
 }
