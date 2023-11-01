@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Popover from '@mui/material/Popover';
-
+import "./popover.css"
 export default function BasicPopover({ anchorEl, setAnchorEl, movie_json, ytLinkKey }) {
     // const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -16,7 +16,7 @@ export default function BasicPopover({ anchorEl, setAnchorEl, movie_json, ytLink
     const id = open ? 'simple-popover' : undefined;
 
     return (
-        <div>
+        <div >
             <Popover
                 id={id}
                 open={open}
@@ -27,9 +27,10 @@ export default function BasicPopover({ anchorEl, setAnchorEl, movie_json, ytLink
                     horizontal: 'left',
                 }}
                 transformOrigin={{
-                    vertical: "bottom",
+                    vertical: "top",
                     horizontal: "left"
                 }}
+                className='popover-width'
             >
                 <div className="container-moview-detainls">
                     <div className="image-container">

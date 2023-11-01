@@ -1,0 +1,44 @@
+@media screen and (996px>width) {
+    .container-moview-detainls {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        gap: 20px;
+        padding: 10px;
+        width: 100%;
+        background-color: #3b3c3e;
+    }
+
+    .description-data {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: auto;
+        justify-content: space-around;
+    }
+
+
+    .image-container img {
+        width: 100%;
+    }
+
+    .popover-width {
+        width: max(450px, 75%);
+        overflow-y: scroll;
+    }
+}
+
+@media screen and (470px>width) {
+
+    .popover-width {
+        width: max(250px, 90%);
+        overflow-y: scroll;
+    }
+}
+
+/*         display: flex;
+    flex-direction: column;
+    gap: 10px;
+     width: 43%; 
+    justify-content: space-around; */
