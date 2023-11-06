@@ -25,7 +25,7 @@
 
     .popover-width {
         width: max(450px, 75%);
-        overflow-y: scroll;
+        /* overflow-y: scroll; */
     }
 }
 
@@ -33,7 +33,7 @@
 
     .popover-width {
         width: max(250px, 90%);
-        overflow-y: scroll;
+        /* overflow-y: scroll; */
     }
 }
 

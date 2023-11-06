@@ -13,8 +13,12 @@ import BasicPopover from "../decorator/popover"
 export const MoviesCard = ({ movie_json, ind }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
+    const [linksRes, setLinkRes] = useState("")
     const [ytLinkKey, setYtLinkKey] = useState("")
     const handleClick = (event) => {
+        console.log("This is key : ", movie_json.id)
+        console.log("This is key : ", linksRes)
+        console.log("This is json : ", movie_json)
         setAnchorEl(event.currentTarget);
     };
 
@@ -32,6 +36,7 @@ export const MoviesCard = ({ movie_json, ind }) => {
             const youtubeLinkReponse = await fetch(ytVideoLink)
             const youtubeLink = await youtubeLinkReponse.json()
             setYtLinkKey(youtubeLink.results[0].key)
+            setLinkRes(youtubeLink)
             return youtubeLink
         }
         videoCapture()
