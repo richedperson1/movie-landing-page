@@ -16,9 +16,9 @@ export const MoviesCard = ({ movie_json, ind }) => {
     const [linksRes, setLinkRes] = useState("")
     const [ytLinkKey, setYtLinkKey] = useState("")
     const handleClick = (event) => {
-        console.log("This is key : ", movie_json.id)
-        console.log("This is key : ", linksRes)
-        console.log("This is json : ", movie_json)
+        // console.log("This is key : ", movie_json.id)
+        // console.log("This is key : ", linksRes)
+        // console.log("This is json : ", movie_json)
         setAnchorEl(event.currentTarget);
     };
 

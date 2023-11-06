@@ -19,7 +19,7 @@ export const ShowCard = ({ movie_json, ind }) => {
             try {
 
                 const ytVideoLink = `https://api.themoviedb.org/3/tv/${movie_json.id}/videos?api_key=26ba5e77849587dbd7df199727859189&language=en-US`;
-                console.log(movie_json);
+                // console.log(movie_json);
                 const youtubeLinkReponse = await fetch(ytVideoLink)
                 const youtubeLink = await youtubeLinkReponse.json()
                 setYtLinkKey(youtubeLink.results[0].key)
@@ -68,7 +68,7 @@ export const ShowLayOut = ({ url2Render, totalPageSet, pageNumber }) => {
     const [showList, setShowList] = useState([]);
     const [showDataFound, setShowDataFound] = useState(0)
     const fetchingDataURL = async () => {
-        console.log("The urls is : ", url2Render)
+        // console.log("The urls is : ", url2Render)
         const reponseFromURL = await fetch(url2Render);
         const jsonMoviesData = await reponseFromURL.json()
         totalPageSet(Math.min(100, jsonMoviesData['total_pages']))
