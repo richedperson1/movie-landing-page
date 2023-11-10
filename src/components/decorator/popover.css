@@ -42,3 +42,34 @@
     gap: 10px;
      width: 43%; 
     justify-content: space-around; */
+
+
+.flex {
+    display: flex;
+}
+
+.flex-gap-10px {
+    gap: 10px;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+/* Popover Downloads links */
+
+.movie-download-link {
+    color: rgb(5, 5, 5);
+    width: fit-content;
+    background: aquamarine;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 10px;
+
+}
+
+.width-fit-content {
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: scroll;
+}
