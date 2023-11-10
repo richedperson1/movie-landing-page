@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ShimmerBox from "../decorator/shimmers";
 import "./movies.css"
 import PaginationControlled from "../decorator/pagenation"
-import Popover from '@mui/material/Popover';
+// import Popover from '@mui/material/Popover';
 // Movies JSON Data
 import BasicPopover from "../decorator/popover"
 

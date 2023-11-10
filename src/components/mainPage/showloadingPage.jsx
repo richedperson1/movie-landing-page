@@ -41,6 +41,7 @@ export const ShowCard = ({ movie_json, ind }) => {
             return "youtubeLink"
         }
         videoCapture()
+
     }, [ytLinkKey])
 
     return (
@@ -78,10 +79,17 @@ export const ShowLayOut = ({ url2Render, totalPageSet, pageNumber }) => {
     useEffect(() => {
         const ouputJsonData = fetchingDataURL();
         // console.log("data is loading", ouputJsonData, url2Render)
+        const moviesDownloadLink = async () => {
+            // https://pogolinks.hair/movies/oppenheimer-2023/
+            await fetch('')
+        }
         ouputJsonData.then((result) => {
             setShowList(result)
+            console.log("This is the results", result.results[0])
             setShowDataFound(1)
         })
+
+
 
     }, [url2Render])
 
